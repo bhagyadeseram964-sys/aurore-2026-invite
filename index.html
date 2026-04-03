@@ -1,49 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURORE 2026 | Junior Welcome Event</title>
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#05070a;
+  color:#eef1f6;
+  overflow-x:hidden;
+  position:relative;
+  min-height:100vh;
+}
+.bg{
+  position:fixed; inset:0;
+  background:radial-gradient(circle at 20% 30%, #0b1024, #020308);
+  z-index:-2;
+}
+
+/* Stars */
+.star{
+  position:absolute;
+  background:#fff;
+  border-radius:50%;
+  opacity:0.8;
+  animation-name:twinkle;
+  animation-iteration-count:infinite;
+  animation-timing-function:linear;
+}
+@keyframes twinkle{
+  0%,100%{opacity:0.2;}
+  50%{opacity:1;}
+}
+
+/* Containers */
+#nameScreen{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+  gap:1rem;
+  font-size:1.2rem;
+}
+#nameScreen input{
+  padding:.6rem 1rem;
+  border-radius:1rem;
+  border:none;
+  outline:none;
+  font-size:1rem;
+}
+#nameScreen button{
+  padding:.6rem 1.2rem;
+  border:none;
+  border-radius:1rem;
+  background:#4c8eff;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:2rem 1.5rem 4rem;
+}
+#invitationCard{
+  display:none;
+  background:rgba(15,20,40,.65);
+  backdrop-filter:blur(12px);
+  border-radius:3rem;
+  padding:3rem;
+  border:1px solid rgba(120,160,255,.25);
+  box-shadow:0 30px 60px rgba(0,0,0,.45);
+  transition:transform 0.1s ease-out;
+}
+.title{
+  font-family:'Space Grotesk',monospace;
+  font-size:clamp(3rem,10vw,5.5rem);
+  font-weight:800;
+  background:linear-gradient(135deg,#fff,#b9d8ff,#7c9eff);
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 0 18px rgba(100,140,255,.35);
+  line-height:1.1;
+}
+.subtitle{
+  margin-top:.8rem;
+  font-size:1.2rem;
+  color:#cdd9ff;
+  border-left:4px solid #4c8eff;
+  padding-left:1rem;
+}
+.badge{
+  display:inline-block;
+  margin:1.8rem 0;
+  padding:.6rem 1.4rem;
+  border-radius:3rem;
+  background:rgba(40,70,120,.55);
+  border:1px solid rgba(120,160,255,.4);
+  font-size:.9rem;
+}
+.countdown{
+  display:flex;
+  gap:1.2rem;
+  margin:2.5rem 0;
+  flex-wrap:wrap;
+}
+.time{
+  flex:1;
+  min-width:90px;
+  background:rgba(0,0,0,.45);
+  border-radius:2rem;
+  text-align:center;
+  padding:1rem;
+  border:1px solid rgba(255,255,255,.08);
+}
+.num{
+  font-family:'Space Grotesk',monospace;
+  font-size:2.8rem;
+  font-weight:800;
+  background:linear-gradient(145deg,#f0f4ff,#bfd6ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.label{
+  margin-top:.4rem;
+  font-size:.75rem;
+  letter-spacing:2px;
+  color:#8fa6d6;
+}
+.info{
+  display:flex;
+  gap:1.2rem;
+  flex-wrap:wrap;
+  margin:2rem 0;
+}
+.info-box{
+  flex:1;
+  min-width:200px;
+  background:rgba(25,35,65,.6);
+  border-radius:1.8rem;
+  padding:1.2rem;
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  border:1px solid rgba(120,160,255,.25);
+}
+.info-box i{
+  font-size:2rem;
+  color:#6fa4ff;
+}
+.welcome{
+  margin-top:2rem;
+  padding:1.4rem 1.8rem;
+  border-radius:2rem;
+  background:linear-gradient(135deg,rgba(255,170,90,.18),rgba(255,90,140,.18));
+  border-left:6px solid #ffb15a;
+  display:flex;
+  gap:1rem;
+  align-items:center;
+}
+.welcome i{
+  font-size:2.6rem;
+  color:#ffc27a;
+}
+.highlights{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:2.5rem;
+}
+.highlight{
+  padding:.9rem 1.8rem;
+  border-radius:3rem;
+  background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,190,120,.5);
+  font-weight:600;
+}
+footer{
+  margin-top:4rem;
+  text-align:center;
+  font-size:.8rem;
+  color:#7c89b0;
+  border-top:1px solid rgba(120,160,255,.2);
+  padding-top:2rem;
+}
+.personal-greeting{
+  font-size:1.5rem;
+  margin:1.5rem 0;
+  font-weight:600;
+}
+@media(max-width:600px){
+  .container{padding:2rem}
+  .num{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<!-- Manual Name Input Screen -->
+<div id="nameScreen">
+  <div>Enter your name to open the invitation:</div>
+  <input type="text" id="guestName" placeholder="Your Name">
+  <button id="enterBtn">Enter</button>
+</div>
+
+<div class="container">
+  <div id="invitationCard">
+
+    <div class="title">AURORE 2026</div>
+    <div class="subtitle">
+      Junior Welcome Event · Celebration of Talent, Fun & New Beginnings
+    </div>
+
+    <div class="personal-greeting" id="personalName">Dear Guest,</div>
+
+    <div class="badge">
+      <i class="fas fa-laptop-code"></i>
+      Faculty of Computer Science & Engineering
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown">
+      <div class="time"><div class="num" id="d">00</div><div class="label">DAYS</div></div>
+      <div class="time"><div class="num" id="h">00</div><div class="label">HOURS</div></div>
+      <div class="time"><div class="num" id="m">00</div><div class="label">MINUTES</div></div>
+      <div class="time"><div class="num" id="s">00</div><div class="label">SECONDS</div></div>
+    </div>
+
+    <!-- Info -->
+    <div class="info">
+      <div class="info-box">
+        <i class="fas fa-calendar-alt"></i>
+        <div><strong>Date</strong><br>Wednesday, 8 April 2026</div>
+      </div>
+      <div class="info-box">
+        <i class="fas fa-clock"></i>
+        <div><strong>Time</strong><br>9:00 AM</div>
+      </div>
+      <div class="info-box">
+        <i class="fas fa-location-dot"></i>
+        <div><strong>Venue</strong><br>KIU Auditorium</div>
+      </div>
+    </div>
+
+    <!-- Welcome Message -->
+    <div class="welcome">
+      <i class="fas fa-star"></i>
+      <div>
+        <strong>Warm Welcome to Our Juniors!</strong><br>
+        This event is proudly organized by the seniors to welcome you into the Faculty of CSE.
+        Enjoy a joyful morning filled with creativity, performances, games, and meaningful connections.
+      </div>
+    </div>
+
+    <!-- Highlights -->
+    <div class="highlights">
+      <div class="highlight"><i class="fas fa-gamepad"></i> Game Shows</div>
+      <div class="highlight"><i class="fas fa-music"></i> Singing Performances</div>
+      <div class="highlight"><i class="fas fa-dance"></i> Dance Performances</div>
+      <div class="highlight"><i class="fas fa-theater-masks"></i> Drama & Creative Acts</div>
+      <div class="highlight"><i class="fas fa-users"></i> Meet the Seniors</div>
+    </div>
+
+    <footer>
+      AURORE 2026 · Junior Welcome Event · KIU Auditorium · 8 April 2026 @ 9:00 AM<br>
+      Faculty of Computer Science & Engineering
+    </footer>
+  </div>
+</div>
+
 <script>
+// Get elements
 const nameScreen = document.getElementById('nameScreen');
 const invitationCard = document.getElementById('invitationCard');
 const guestInput = document.getElementById('guestName');
 const personalName = document.getElementById('personalName');
 const enterBtn = document.getElementById('enterBtn');
 
-// Get name from URL
+// --- Get name from URL ---
 function getNameFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get("name");
 }
 
-// Auto load from QR
+// --- Auto load from QR / URL ---
 window.onload = () => {
   const urlName = getNameFromURL();
-
   if (urlName) {
     personalName.innerText = `Dear ${urlName},`;
     nameScreen.style.display = 'none';
     invitationCard.style.display = 'block';
+  } else {
+    nameScreen.style.display = 'flex';
   }
 };
 
-// Manual input
+// --- Manual input ---
 enterBtn.addEventListener('click', () => {
   const name = guestInput.value.trim();
   if(!name){ alert("Please enter your name!"); return; }
-  personalName.innerText = `Dear Mr/Miss ${name},`;
+  personalName.innerText = `Dear ${name},`;
   nameScreen.style.display='none';
   invitationCard.style.display='block';
 });
 
-// Countdown Timer
-const target = new Date(2026,3,9,9,0,0);
-setInterval(()=>{
+// --- Countdown Timer ---
+const targetDate = new Date(2026, 3, 9, 9, 0, 0);
+setInterval(() => {
   const now = new Date();
-  let diff = target-now;
-  if(diff<0) diff=0;
-  document.getElementById('d').innerText=Math.floor(diff/86400000);
-  document.getElementById('h').innerText=Math.floor(diff/3600000)%24;
-  document.getElementById('m').innerText=Math.floor(diff/60000)%60;
-  document.getElementById('s').innerText=Math.floor(diff/1000)%60;
+  let diff = targetDate - now;
+  if(diff < 0) diff = 0;
+  document.getElementById('d').innerText = String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('h').innerText = String(Math.floor(diff/3600000)%24).padStart(2,'0');
+  document.getElementById('m').innerText = String(Math.floor(diff/60000)%60).padStart(2,'0');
+  document.getElementById('s').innerText = String(Math.floor(diff/1000)%60).padStart(2,'0');
 },1000);
 
-// Stars
+// --- Stars animation ---
 for(let i=0;i<80;i++){
   const star=document.createElement('div');
   star.className='star';
@@ -55,13 +339,15 @@ for(let i=0;i<80;i++){
   document.body.appendChild(star);
 }
 
-// 3D tilt
+// --- 3D Tilt effect ---
 document.addEventListener('mousemove', e => {
   if(invitationCard.style.display !== 'block') return;
-  const cx = window.innerWidth / 2;
-  const cy = window.innerHeight / 2;
-  const dx = (e.clientX - cx) / cx;
-  const dy = (e.clientY - cy) / cy;
+  const cx = window.innerWidth/2;
+  const cy = window.innerHeight/2;
+  const dx = (e.clientX - cx)/cx;
+  const dy = (e.clientY - cy)/cy;
   invitationCard.style.transform = `rotateY(${dx*15}deg) rotateX(${-dy*15}deg)`;
 });
 </script>
+</body>
+</html>
