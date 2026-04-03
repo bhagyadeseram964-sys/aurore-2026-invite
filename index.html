@@ -1,0 +1,67 @@
+<script>
+const nameScreen = document.getElementById('nameScreen');
+const invitationCard = document.getElementById('invitationCard');
+const guestInput = document.getElementById('guestName');
+const personalName = document.getElementById('personalName');
+const enterBtn = document.getElementById('enterBtn');
+
+// Get name from URL
+function getNameFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("name");
+}
+
+// Auto load from QR
+window.onload = () => {
+  const urlName = getNameFromURL();
+
+  if (urlName) {
+    personalName.innerText = `Dear ${urlName},`;
+    nameScreen.style.display = 'none';
+    invitationCard.style.display = 'block';
+  }
+};
+
+// Manual input
+enterBtn.addEventListener('click', () => {
+  const name = guestInput.value.trim();
+  if(!name){ alert("Please enter your name!"); return; }
+  personalName.innerText = `Dear Mr/Miss ${name},`;
+  nameScreen.style.display='none';
+  invitationCard.style.display='block';
+});
+
+// Countdown Timer
+const target = new Date(2026,3,9,9,0,0);
+setInterval(()=>{
+  const now = new Date();
+  let diff = target-now;
+  if(diff<0) diff=0;
+  document.getElementById('d').innerText=Math.floor(diff/86400000);
+  document.getElementById('h').innerText=Math.floor(diff/3600000)%24;
+  document.getElementById('m').innerText=Math.floor(diff/60000)%60;
+  document.getElementById('s').innerText=Math.floor(diff/1000)%60;
+},1000);
+
+// Stars
+for(let i=0;i<80;i++){
+  const star=document.createElement('div');
+  star.className='star';
+  star.style.top=Math.random()*100+'%';
+  star.style.left=Math.random()*100+'%';
+  const size=Math.random()*2+1;
+  star.style.width=star.style.height=size+'px';
+  star.style.animationDuration=(Math.random()*3+2)+'s';
+  document.body.appendChild(star);
+}
+
+// 3D tilt
+document.addEventListener('mousemove', e => {
+  if(invitationCard.style.display !== 'block') return;
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+  const dx = (e.clientX - cx) / cx;
+  const dy = (e.clientY - cy) / cy;
+  invitationCard.style.transform = `rotateY(${dx*15}deg) rotateX(${-dy*15}deg)`;
+});
+</script>
